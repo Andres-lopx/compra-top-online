@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Categoria {
+  id          String     @id @default(cuid())
+  nombre      String     @unique
+  slug        String     @unique
+  productos   Producto[]
+  creadoEn    DateTime   @default(now())
+}
+
+model Producto {
+  id          String     @id @default(cuid())
+  nombre      String
+  slug        String     @unique
+  descripcion String?
+  precio      Float
+  precioOferta Float?
+  imagenes    String[]
+  stock       Int        @default(0)
+  activo      Boolean    @default(true)
+  categoriaId String
+  categoria   Categoria  @relation(fields: [categoriaId], references: [id])
+  itemsOrden  ItemOrden[]
+  creadoEn    DateTime   @default(now())
+}
+
+model Usuario {
+  id          String   @id @default(cuid())
+  nombre      String
+  email       String   @unique
+  password    String?
+  rol         Rol      @default(CLIENTE)
+  ordenes     Orden[]
+  creadoEn    DateTime @default(now())
+}
+
+model Orden {
+  id          String      @id @default(cuid())
+  usuarioId   String
+  usuario     Usuario     @relation(fields: [usuarioId], references: [id])
+  items       ItemOrden[]
+  total       Float
+  estado      EstadoOrden @default(PENDIENTE)
+  telefono    String?
+  direccion   String?
+  creadoEn    DateTime    @default(now())
+}
+
+model ItemOrden {
+  id         String   @id @default(cuid())
+  ordenId    String
+  orden      Orden    @relation(fields: [ordenId], references: [id])
+  productoId String
+  producto   Producto @relation(fields: [productoId], references: [id])
+  cantidad   Int
+  precio     Float
+}
+
+enum Rol {
+  ADMIN
+  CLIENTE
+}
+
+enum EstadoOrden {
+  PENDIENTE
+  PAGADO
+  ENVIADO
+  ENTREGADO
+  CANCELADO
+}
