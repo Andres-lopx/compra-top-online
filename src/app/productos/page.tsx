@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma"
+import Link from "next/link"
 
 export default async function ProductosPage() {
   const productos = await prisma.producto.findMany({
@@ -15,8 +16,9 @@ export default async function ProductosPage() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {productos.map((producto) => (
-          <div
+          <Link
             key={producto.id}
+            href={`/productos/${producto.slug}`}
             className="border border-gray-200 rounded-xl p-4 hover:shadow-md transition-shadow"
           >
             {/* Imagen placeholder */}
@@ -51,7 +53,7 @@ export default async function ProductosPage() {
                 </span>
               )}
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </main>
