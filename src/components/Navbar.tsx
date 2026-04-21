@@ -1,32 +1,38 @@
+"use client"
+
+import Link from "next/link"
+import { useCarrito } from "@/store/carrito"
+
 export default function Navbar() {
+const items = useCarrito((state) => state.items)
+const cantidadTotal = items.reduce((acc, i) => acc + i.cantidad, 0)
+
   return (
     <nav className="w-full bg-white border-b border-gray-200 px-6 py-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
 
         {/* Logo */}
-        <span className="text-xl font-bold text-black">
+        <Link href="/" className="text-xl font-bold text-black">
           CompraTopOnline
-        </span>
+        </Link>
 
-        {/* Links de navegación */}
+        {/* Links */}
         <div className="flex gap-6 text-sm text-gray-600">
-          <a href="/productos" className="hover:text-black transition-colors">
+          <Link href="/productos?categoria=perfumes" className="hover:text-black transition-colors">
             Perfumes
-          </a>
-          <a href="/productos" className="hover:text-black transition-colors">
+          </Link>
+          <Link href="/productos?categoria=relojes" className="hover:text-black transition-colors">
             Relojes
-          </a>
-          <a href="/productos" className="hover:text-black transition-colors">
+          </Link>
+          <Link href="/productos?categoria=gafas" className="hover:text-black transition-colors">
             Gafas
-          </a>
+          </Link>
         </div>
 
         {/* Carrito */}
-        <div className="flex items-center gap-4">
-          <a href="/carrito" className="text-sm text-gray-600 hover:text-black transition-colors">
-            🛒 Carrito (0)
-          </a>
-        </div>
+        <Link href="/carrito" className="text-sm text-gray-600 hover:text-black transition-colors">
+          🛒 Carrito ({cantidadTotal})
+        </Link>
 
       </div>
     </nav>
