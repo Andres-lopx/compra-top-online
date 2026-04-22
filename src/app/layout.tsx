@@ -3,6 +3,7 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/Navbar"
 import WhatsAppButton from "@/components/WhatsAppButton"
+import Providers from "@/components/Providers"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,9 +22,11 @@ export default function RootLayout({
   return (
     <html lang="es" className={inter.className}>
       <body className="min-h-screen flex flex-col bg-white">
-        <Navbar />
-        {children}
-        <WhatsAppButton />
+        <Providers>
+          <Navbar />
+          {children}
+          <WhatsAppButton />
+        </Providers>
       </body>
     </html>
   )
