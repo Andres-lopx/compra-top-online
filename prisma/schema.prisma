@@ -79,3 +79,8 @@ enum EstadoOrden {
   ENTREGADO
   CANCELADO
 }
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
