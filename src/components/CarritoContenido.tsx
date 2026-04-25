@@ -24,57 +24,58 @@ export default function CarritoContenido() {
   }
 
   return (
-    <main className="max-w-3xl mx-auto px-6 py-10">
-      <h1 className="text-3xl font-bold text-black mb-8">Tu carrito</h1>
+    <main className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
+      <h1 className="text-2xl sm:text-3xl font-bold text-black mb-8">Tu carrito</h1>
 
       <div className="flex flex-col gap-4 mb-8">
         {items.map((item) => (
-          <div
-            key={item.id}
-            className="flex items-center gap-4 border border-gray-200 rounded-xl p-4"
-          >
-            {/* Imagen */}
-            <div className="w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center">
-              <span className="text-gray-400 text-xs">Sin imagen</span>
+          <div key={item.id} className="border border-gray-200 rounded-xl p-4">
+            <div className="flex items-center gap-4">
+
+              {/* Imagen */}
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center">
+                <span className="text-gray-400 text-xs">Sin imagen</span>
+              </div>
+
+              {/* Info + acciones */}
+              <div className="flex-1 min-w-0">
+                <div className="flex items-start justify-between gap-2">
+                  <h2 className="font-semibold text-black text-sm leading-tight">{item.nombre}</h2>
+                  <button
+                    onClick={() => eliminar(item.id)}
+                    className="text-red-400 hover:text-red-600 transition-colors flex-shrink-0 text-sm"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                <p className="text-green-600 font-bold text-sm mt-1">
+                  ${item.precio.toLocaleString("es-CO")}
+                </p>
+
+                <div className="flex items-center justify-between mt-2">
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => actualizar(item.id, item.cantidad - 1)}
+                      className="w-7 h-7 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors text-sm"
+                    >
+                      -
+                    </button>
+                    <span className="w-6 text-center font-semibold text-sm">{item.cantidad}</span>
+                    <button
+                      onClick={() => actualizar(item.id, item.cantidad + 1)}
+                      className="w-7 h-7 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors text-sm"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <p className="font-bold text-black text-sm">
+                    ${(item.precio * item.cantidad).toLocaleString("es-CO")}
+                  </p>
+                </div>
+              </div>
+
             </div>
-
-            {/* Info */}
-            <div className="flex-1">
-              <h2 className="font-semibold text-black">{item.nombre}</h2>
-              <p className="text-green-600 font-bold">
-                ${item.precio.toLocaleString("es-CO")}
-              </p>
-            </div>
-
-            {/* Cantidad */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => actualizar(item.id, item.cantidad - 1)}
-                className="w-8 h-8 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors"
-              >
-                -
-              </button>
-              <span className="w-6 text-center font-semibold">{item.cantidad}</span>
-              <button
-                onClick={() => actualizar(item.id, item.cantidad + 1)}
-                className="w-8 h-8 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors"
-              >
-                +
-              </button>
-            </div>
-
-            {/* Subtotal */}
-            <p className="font-bold text-black min-w-[80px] text-right">
-              ${(item.precio * item.cantidad).toLocaleString("es-CO")}
-            </p>
-
-            {/* Eliminar */}
-            <button
-              onClick={() => eliminar(item.id)}
-              className="text-red-400 hover:text-red-600 transition-colors ml-2"
-            >
-              ✕
-            </button>
           </div>
         ))}
       </div>

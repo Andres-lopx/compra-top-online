@@ -6,8 +6,8 @@ export default function Home() {
 
       {/* Hero */}
       <section className="bg-black text-white py-20 px-6 text-center">
-        <h1 className="text-5xl font-bold mb-4">CompraTopOnline</h1>
-        <p className="text-xl text-gray-400 mb-8">
+        <h1 className="text-3xl sm:text-5xl font-bold mb-4">CompraTopOnline</h1>
+        <p className="text-base sm:text-xl text-gray-400 mb-8">
           Perfumes, relojes y accesorios con envío gratis a toda Colombia
         </p>
         <Link
