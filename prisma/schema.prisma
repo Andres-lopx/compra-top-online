@@ -1,7 +1,11 @@
-generator client {
-  provider = "prisma-client-js"
-  output   = "../node_modules/@prisma/client"
-}
+"scripts": {
+  "dev": "next dev --turbopack",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint",
+  "seed": "tsx prisma/seed.ts",
+  "postinstall": "prisma generate"
+},
 
 datasource db {
   provider = "postgresql"
