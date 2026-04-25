@@ -4,6 +4,7 @@ import "./globals.css"
 import Navbar from "@/components/Navbar"
 import WhatsAppButton from "@/components/WhatsAppButton"
 import Providers from "@/components/Providers"
+import Script from "next/script"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,6 +28,10 @@ export default function RootLayout({
           {children}
           <WhatsAppButton />
         </Providers>
+        <Script
+          src="https://checkout.wompi.co/widget.js"
+          strategy="beforeInteractive"
+        />
       </body>
     </html>
   )

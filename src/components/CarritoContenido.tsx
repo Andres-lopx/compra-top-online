@@ -2,9 +2,11 @@
 
 import { useCarrito } from "@/store/carrito"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export default function CarritoContenido() {
   const { items, eliminar, actualizar, total } = useCarrito()
+  const router = useRouter()
 
   if (items.length === 0) {
     return (
@@ -86,7 +88,10 @@ export default function CarritoContenido() {
       </div>
 
       {/* Botón checkout */}
-      <button className="w-full bg-black text-white py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors mt-6">
+      <button
+        onClick={() => router.push("/checkout")}
+        className="w-full bg-black text-white py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors mt-6"
+      >
         Proceder al pago
       </button>
     </main>
