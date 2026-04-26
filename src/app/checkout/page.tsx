@@ -122,7 +122,7 @@ window.location.href = `https://checkout.wompi.co/p/?${params.toString()}`
         <button
           onClick={handlePago}
           disabled={cargando || !telefono || !direccion}
-          className="w-full bg-black text-white py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50"
+          className="w-full bg-[#f5901e] text-white py-4 rounded-xl font-semibold hover:bg-[#d97706] transition-colors disabled:opacity-50 shadow-md"
         >
           {cargando ? "Procesando..." : `Pagar $${total().toLocaleString("es-CO")}`}
         </button>

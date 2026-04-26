@@ -30,7 +30,7 @@ export default function BotonCarrito({ producto }: Props) {
   return (
     <button
       onClick={handleAgregar}
-      className="w-full bg-black text-white py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors"
+      className="w-full bg-[#f5901e] text-white py-4 rounded-xl font-semibold hover:bg-[#d97706] transition-colors shadow-md"
     >
       Agregar al carrito
     </button>

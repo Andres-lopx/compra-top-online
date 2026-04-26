@@ -25,7 +25,7 @@ export default function CarritoContenido() {
 
   return (
     <main className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-      <h1 className="text-2xl sm:text-3xl font-bold text-black mb-8">Tu carrito</h1>
+      <h1 className="text-2xl sm:text-3xl font-bold text-[#1a2744] mb-8">Tu carrito</h1>
 
       <div className="flex flex-col gap-4 mb-8">
         {items.map((item) => (
@@ -91,7 +91,7 @@ export default function CarritoContenido() {
       {/* Botón checkout */}
       <button
         onClick={() => router.push("/checkout")}
-        className="w-full bg-black text-white py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors mt-6"
+        className="w-full bg-[#f5901e] text-white py-4 rounded-xl font-semibold hover:bg-[#d97706] transition-colors mt-6 shadow-md"
       >
         Proceder al pago
       </button>
